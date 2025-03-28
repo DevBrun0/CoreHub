@@ -38,8 +38,16 @@ public class ContaBO {
         try {
 
             if (contaDAO.verificarContaExiste(idTipo, idAgencia, numero)) {
-                System.out.println("Erro: Conta já cadastrada para essa agência e número.");
-                return 0;
+                if(idTipo == 1){
+                    System.out.println("Erro: Você já possui uma conta corrente na agencia e numero digitados");
+                    return 0;
+                } else if (idTipo == 2) {
+                    System.out.println("Erro: Você já possui uma conta poupanca na agencia e numero digitados");
+                    return 0;
+                }else {
+                    System.out.println("Erro: Você já possui uma conta salario na agencia e numero digitados");
+                    return 0;
+                }
             }
 
             if (saldo < 10) {

@@ -28,21 +28,19 @@ public class ContaDAO {
 
     public boolean verificarContaExiste(int idTipo, int idAgencia, int numero) throws SQLException {
 
-            String sql = "SELECT COUNT(*) FROM Conta WHERE id_tipo = ? AND id_agencia = ? AND numero = ?";
+        String sql = "SELECT COUNT(*) FROM Conta WHERE id_tipo = ? AND id_agencia = ? AND numero = ?";
 
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, idTipo);
-            stmt.setInt(2, idAgencia);
-            stmt.setInt(3, numero);
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setInt(1, idTipo);
+        stmt.setInt(2, idAgencia);
+        stmt.setInt(3, numero);
 
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1) > 0; // Se retornar um número maior que 0, significa que essa conta já existe
-            }
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return rs.getInt(1) > 0; // Se retornar um número maior que 0, significa que essa conta já existe
+        }
 
-            return false;
-
-
+        return false;
     }
 
     public int cadastrarConta(int idUsuario, int idTipo, double idClasse, int idAgencia, int numero, double saldo, String dataAbertura) throws SQLException {
